@@ -33,8 +33,6 @@ jobs:
             - name: Compile Typescript to Javascript
               id: compile_typescript
               uses: iCrawl/action-tsc@v1
-              with:
-                  files: 'tsconfig.json'
 
             # Zip Files
             - name: Zip files
