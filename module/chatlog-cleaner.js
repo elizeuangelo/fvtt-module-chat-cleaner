@@ -3,8 +3,8 @@ const INTERVAL = 10000;
 const DELETE_MESSAGES = [foundry.CONST.CHAT_MESSAGE_TYPES.ROLL, foundry.CONST.CHAT_MESSAGE_TYPES.OTHER];
 function messageTypesToDelete() {
     if (getSetting('sensitiveMessages'))
-        return Object.values(foundry.CONST.CHAT_MESSAGE_TYPES);
-    return DELETE_MESSAGES;
+        return DELETE_MESSAGES;
+    return Object.values(foundry.CONST.CHAT_MESSAGE_TYPES);
 }
 function deleteMessages() {
     const types = messageTypesToDelete(), maxMessages = getSetting('maxMessages');

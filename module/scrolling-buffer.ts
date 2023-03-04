@@ -10,23 +10,35 @@ Hooks.once('setup', () => {
 		if (ui.chat.element[0].querySelector('#chat-log')!.childElementCount === game.messages!.size) return;
 		if (event.target.scrollTop === 0) {
 			window.clearTimeout(timer);
-			display(true);
+			display(this, true);
 			timer = window.setTimeout(async () => {
-				await this._renderBatch(this.element, CONFIG.ChatMessage.batchSize);
-				display(false);
+				const chatLogs = [ui.chat, ...Object.values(ui.windows).filter((i) => i.title === 'Chat Log')] as ChatLog[];
+
+				for (const chatLog of chatLogs) {
+					await chatLog._renderBatch(chatLog.element, CONFIG.ChatMessage.batchSize);
+				}
+
+				display(this, false);
 			}, 1000);
 		}
 	};
 });
 
-function insertLoadIcon() {
-	document.querySelector('section.chat-sidebar')!.prepend(LOADING_SVG);
+function insertLoadIcon(html: HTMLElement) {
+	const node = LOADING_SVG.cloneNode(true) as SVGElement;
+	if (html.nodeName === 'SECTION') html.prepend(node);
+	else html.querySelector('section.chat-sidebar')!.prepend(node);
+	return node;
 }
 
-function display(display: boolean) {
-	LOADING_SVG.style.display = display ? 'initial' : 'none';
+function display(chatLog: ChatLog & { LOADING_SVG: SVGElement }, display: boolean) {
+	chatLog.LOADING_SVG.style.display = display ? 'initial' : 'none';
 }
 
-Hooks.on('ready', () => {
-	insertLoadIcon();
+Hooks.on('renderChatLog', (chatLog: ChatLog & { LOADING_SVG: SVGElement }, html: JQuery<HTMLElement>, data: ChatLog.Data) => {
+	chatLog.LOADING_SVG = insertLoadIcon(html[0]);
+	if (chatLog.popOut) {
+		const diff = ui.chat.element[0].querySelector('#chat-log')!.childElementCount - CONFIG.ChatMessage.batchSize;
+		if (diff > 0) chatLog._renderBatch(chatLog.element, diff);
+	}
 });

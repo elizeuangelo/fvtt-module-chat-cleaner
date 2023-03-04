@@ -2,8 +2,8 @@ export const SYSTEM_ID = 'chat-cleaner';
 
 const settings = {
 	sensitiveMessages: {
-		name: 'Exclude Sensitive Chat Messages',
-		hint: 'Also exclude whispers, in-character and emote messages.',
+		name: 'Preserve Sensitive Chat Messages',
+		hint: 'Preserve whispers, in-character and emote messages.',
 		scope: 'world',
 		config: true,
 		type: Boolean,
