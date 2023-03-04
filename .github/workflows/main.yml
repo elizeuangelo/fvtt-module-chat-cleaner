@@ -29,11 +29,6 @@ jobs:
               env:
                   version: ${{ steps.get_version.outputs.VERSION_NUMBER }}
 
-            #Compile Typescript
-            - name: Compile Typescript to Javascript
-              id: compile_typescript
-              run: tsc --skipLibCheck
-
             # Zip Files
             - name: Zip files
               run: zip -r chat-cleaner * -x ".github/*" "README.md" "*.ts" "LICENSE" "tsconfig.json"
