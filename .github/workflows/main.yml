@@ -32,7 +32,7 @@ jobs:
             #Compile Typescript
             - name: Compile Typescript to Javascript
               id: compile_typescript
-              run: tsc
+              run: tsc --skipLibCheck
 
             # Zip Files
             - name: Zip files
