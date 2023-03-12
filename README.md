@@ -1,8 +1,8 @@
 # Foundry VTT - 🧼 Chat Cleaner
 
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/elizeuangelo/fvtt-module-chat-cleaner)
-![GitHub Releases](https://img.shields.io/github/downloads/elizeuangelo/fvtt-module-chat-cleaner/latest/total)
-![GitHub All Releases](https://img.shields.io/github/downloads/elizeuangelo/fvtt-module-chat-cleaner/total?label=downloads)
+![GitHub Releases](https://img.shields.io/github/downloads/elizeuangelo/fvtt-module-chat-cleaner/latest/chat-cleaner.zip)
+![GitHub All Releases](https://img.shields.io/github/downloads/elizeuangelo/fvtt-module-chat-cleaner/chat-cleaner.zip?label=downloads)
 
 Automatically sanitizes the chat, for a smoother Foundry experience.
 
